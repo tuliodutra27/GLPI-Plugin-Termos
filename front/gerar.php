@@ -777,10 +777,8 @@ try {
             </td>
             <td class="title-cell">
                 <div>
-                    <tr>
-                        <p class="main-title">' . htmlspecialchars($cabecalho['titulo1'] ?? 'TÍTULO 1') . '</p>
-                        <p class="sub-title">' . htmlspecialchars($cabecalho['titulo2'] ?? 'TÍTULO 2') . '</p>
-                    </tr>           
+                    <p class="main-title">' . htmlspecialchars($cabecalho['titulo1'] ?? 'TÍTULO 1') . '</p>
+                    <p class="sub-title">' . htmlspecialchars($cabecalho['titulo2'] ?? 'TÍTULO 2') . '</p>
                 </div>
             </td>
         </tr>
