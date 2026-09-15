@@ -41,7 +41,7 @@ try {
                               ORDER BY date_creation DESC LIMIT 1";
             
             
-            $result_cabecalho = $DB->query($sql_cabecalho);
+            $result_cabecalho = $DB->doQuery($sql_cabecalho);
             
             if (!$result_cabecalho) {
                 Session::addMessageAfterRedirect('Erro na consulta do cabeçalho: ' . $DB->error(), true, ERROR);
@@ -68,7 +68,7 @@ try {
             
             // Buscar dados do usuário selecionado - INCLUINDO COMMENT
             $sql_user = "SELECT realname, firstname, comment FROM glpi_users WHERE id = " . intval($user_id) . " AND is_deleted = 0";
-            $result_user = $DB->query($sql_user);
+            $result_user = $DB->doQuery($sql_user);
             
             if (!$result_user || $DB->numrows($result_user) == 0) {
                 Session::addMessageAfterRedirect('Usuário selecionado não encontrado.', true, ERROR);
@@ -116,7 +116,7 @@ try {
             ORDER BY c.name";
             
             
-            $result_computers = $DB->query($sql_computers);
+            $result_computers = $DB->doQuery($sql_computers);
             $computers = [];
             
             if ($result_computers && $DB->numrows($result_computers) > 0) {
@@ -169,7 +169,7 @@ try {
             ORDER BY m.name";
             
             
-            $result_monitors = $DB->query($sql_monitors);
+            $result_monitors = $DB->doQuery($sql_monitors);
             $monitors = [];
             
             if ($result_monitors && $DB->numrows($result_monitors) > 0) {
@@ -223,7 +223,7 @@ try {
             ORDER BY p.name";
             
             
-            $result_phones = $DB->query($sql_phones);
+            $result_phones = $DB->doQuery($sql_phones);
             $phones = [];
             
             if ($result_phones && $DB->numrows($result_phones) > 0) {
@@ -271,7 +271,7 @@ try {
             ORDER BY l.name";
             
             
-            $result_lines = $DB->query($sql_lines);
+            $result_lines = $DB->doQuery($sql_lines);
             $lines = [];
             
             if ($result_lines && $DB->numrows($result_lines) > 0) {
@@ -355,7 +355,7 @@ try {
             ORDER BY r.serial";
             
             
-            $result_radios = $DB->query($sql_radios);
+            $result_radios = $DB->doQuery($sql_radios);
             $radios = [];
             
             if ($result_radios && $DB->numrows($result_radios) > 0) {
@@ -405,7 +405,7 @@ try {
             AND p.entities_id = " . intval($_SESSION['glpiactive_entity']) . "
             ORDER BY p.name";
 
-            $result_printers = $DB->query($sql_printers);
+            $result_printers = $DB->doQuery($sql_printers);
             $printers = [];
 
             if ($result_printers && $DB->numrows($result_printers) > 0) {
@@ -448,7 +448,7 @@ try {
             AND p.entities_id = " . intval($_SESSION['glpiactive_entity']) . "
             ORDER BY p.name";
 
-            $result_peripherals = $DB->query($sql_peripherals);
+            $result_peripherals = $DB->doQuery($sql_peripherals);
             $peripherals = [];
 
             if ($result_peripherals && $DB->numrows($result_peripherals) > 0) {
@@ -483,7 +483,7 @@ try {
                                 ORDER BY indice ASC";
             
             
-            $result_observacoes = $DB->query($sql_observacoes);
+            $result_observacoes = $DB->doQuery($sql_observacoes);
             
             $observacoes = [];
             if ($result_observacoes && $DB->numrows($result_observacoes) > 0) {
@@ -499,7 +499,7 @@ try {
                               ORDER BY indice ASC";
             
             
-            $result_clausulas = $DB->query($sql_clausulas);
+            $result_clausulas = $DB->doQuery($sql_clausulas);
             
             $clausulas_html = '';
             $clausulas_count = 0;
@@ -1094,7 +1094,7 @@ try {
     // Verificar se há cabeçalho configurado
     try {
         // Verificar se a tabela existe primeiro
-        $table_check = $DB->query("SHOW TABLES LIKE 'glpi_termos_cabecalho'");
+        $table_check = $DB->doQuery("SHOW TABLES LIKE 'glpi_termos_cabecalho'");
         if (!$table_check || $DB->numrows($table_check) == 0) {
             echo "<div style='background: #f8d7da; color: #721c24; padding: 20px; border-radius: 8px; border-left: 4px solid #dc3545; margin: 20px 0;'>";
             echo "<h4 style='margin: 0 0 10px 0;'>Tabela Não Encontrada</h4>";
@@ -1105,7 +1105,7 @@ try {
                           WHERE is_deleted = 0 AND entities_id = " . intval($_SESSION['glpiactive_entity']) . "
                           ORDER BY date_creation DESC LIMIT 1";
             
-            $result_check = $DB->query($sql_check);
+            $result_check = $DB->doQuery($sql_check);
             $has_cabecalho = ($result_check && $DB->numrows($result_check) > 0);
             
             if (!$has_cabecalho) {
@@ -1143,7 +1143,7 @@ try {
                                             WHERE is_deleted = 0 AND entities_id = " . intval($_SESSION['glpiactive_entity']) . "
                                             ORDER BY indice ASC";
                 
-                $result_observacoes_preview = $DB->query($sql_observacoes_preview);
+                $result_observacoes_preview = $DB->doQuery($sql_observacoes_preview);
                 
                 if ($result_observacoes_preview && $DB->numrows($result_observacoes_preview) > 0) {
                     echo "<div style='font-size: 14px;'>";
@@ -1183,7 +1183,7 @@ try {
                                           WHERE is_deleted = 0 AND entities_id = " . intval($_SESSION['glpiactive_entity']) . "
                                           ORDER BY indice ASC";
                 
-                $result_clausulas_preview = $DB->query($sql_clausulas_preview);
+                $result_clausulas_preview = $DB->doQuery($sql_clausulas_preview);
                 
                 if ($result_clausulas_preview && $DB->numrows($result_clausulas_preview) > 0) {
                     echo "<div style='font-size: 14px;'>";
@@ -1232,7 +1232,7 @@ try {
                 $sql_users = "SELECT id, realname, firstname, comment FROM glpi_users 
                               WHERE is_deleted = 0 AND is_active = 1 
                               ORDER BY realname, firstname";
-                $result_users = $DB->query($sql_users);
+                $result_users = $DB->doQuery($sql_users);
                 
                 echo "<select name='user_id' required style='width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;'>";
                 echo "<option value=''>-- Selecione um usuário --</option>";
@@ -1262,7 +1262,7 @@ try {
                                                AND is_deleted = 0 
                                                AND entities_id = " . intval($_SESSION['glpiactive_entity']);
                         
-                        $result_count_computers = $DB->query($sql_count_computers);
+                        $result_count_computers = $DB->doQuery($sql_count_computers);
                         $computer_count = 0;
                         
                         if ($result_count_computers && $DB->numrows($result_count_computers) > 0) {
@@ -1275,7 +1275,7 @@ try {
                                               AND is_deleted = 0 
                                               AND entities_id = " . intval($_SESSION['glpiactive_entity']);
                         
-                        $result_count_monitors = $DB->query($sql_count_monitors);
+                        $result_count_monitors = $DB->doQuery($sql_count_monitors);
                         $monitor_count = 0;
                         
                         if ($result_count_monitors && $DB->numrows($result_count_monitors) > 0) {
@@ -1288,7 +1288,7 @@ try {
                                             AND is_deleted = 0 
                                             AND entities_id = " . intval($_SESSION['glpiactive_entity']);
                         
-                        $result_count_phones = $DB->query($sql_count_phones);
+                        $result_count_phones = $DB->doQuery($sql_count_phones);
                         $phone_count = 0;
                         
                         if ($result_count_phones && $DB->numrows($result_count_phones) > 0) {
@@ -1301,7 +1301,7 @@ try {
                                            AND is_deleted = 0 
                                            AND entities_id = " . intval($_SESSION['glpiactive_entity']);
                         
-                        $result_count_lines = $DB->query($sql_count_lines);
+                        $result_count_lines = $DB->doQuery($sql_count_lines);
                         $line_count = 0;
                         
                         if ($result_count_lines && $DB->numrows($result_count_lines) > 0) {
@@ -1315,7 +1315,7 @@ try {
                                             AND is_deleted = 0
                                             AND entities_id = " . intval($_SESSION['glpiactive_entity']);
                         
-                        $result_count_radios = $DB->query($sql_count_radios);
+                        $result_count_radios = $DB->doQuery($sql_count_radios);
                         $radio_count = 0;
                         
                         if ($result_count_radios && $DB->numrows($result_count_radios) > 0) {
@@ -1327,7 +1327,7 @@ try {
                                               WHERE users_id = " . intval($user['id']) . "
                                               AND is_deleted = 0
                                               AND entities_id = " . intval($_SESSION['glpiactive_entity']);
-                        $result_count_printers = $DB->query($sql_count_printers);
+                        $result_count_printers = $DB->doQuery($sql_count_printers);
                         $printer_count = 0;
                         if ($result_count_printers && $DB->numrows($result_count_printers) > 0) {
                             $count_data = $DB->fetchAssoc($result_count_printers);
@@ -1338,7 +1338,7 @@ try {
                                                  WHERE users_id = " . intval($user['id']) . "
                                                  AND is_deleted = 0
                                                  AND entities_id = " . intval($_SESSION['glpiactive_entity']);
-                        $result_count_peripherals = $DB->query($sql_count_peripherals);
+                        $result_count_peripherals = $DB->doQuery($sql_count_peripherals);
                         $peripheral_count = 0;
                         if ($result_count_peripherals && $DB->numrows($result_count_peripherals) > 0) {
                             $count_data = $DB->fetchAssoc($result_count_peripherals);

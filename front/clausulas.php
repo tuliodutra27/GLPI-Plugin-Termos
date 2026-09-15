@@ -31,7 +31,7 @@ if (isset($_GET['delete_id']) && isset($_GET['confirm_delete'])) {
         try {
             // Soft delete - marcar como deletado
             $sql = "UPDATE glpi_plugin_termo_clausulas SET is_deleted = 1, date_mod = NOW() WHERE id = $delete_id";
-            $result = $DB->query($sql);
+            $result = $DB->doQuery($sql);
             
             if ($result) {
                 Session::addMessageAfterRedirect("Cláusula excluída com sucesso!", true, INFO);
@@ -81,7 +81,7 @@ if (isset($_POST['add_clausula'])) {
                       WHERE indice = '$indice_check' 
                       AND is_deleted = 0 
                       AND entities_id = $entities_id";
-        $result_check = $DB->query($sql_check);
+        $result_check = $DB->doQuery($sql_check);
         if ($result_check && $DB->result($result_check, 0, 'total') > 0) {
             $erros[] = "Já existe uma cláusula com este índice";
         }
@@ -105,7 +105,7 @@ if (isset($_POST['add_clausula'])) {
                 VALUES 
                 ('$indice_esc', '$texto_esc', $entities_id, NOW(), NOW(), 0)";
         
-        $result = $DB->query($sql);
+        $result = $DB->doQuery($sql);
         
         if ($result) {
             $clausula_id = $DB->insertId();
@@ -157,7 +157,7 @@ if (isset($_POST['update_clausula'])) {
                       AND is_deleted = 0 
                       AND entities_id = $entities_id
                       AND id != $id";
-        $result_check = $DB->query($sql_check);
+        $result_check = $DB->doQuery($sql_check);
         if ($result_check && $DB->result($result_check, 0, 'total') > 0) {
             $erros[] = "Já existe outra cláusula com este índice";
         }
@@ -182,7 +182,7 @@ if (isset($_POST['update_clausula'])) {
                     date_mod = NOW()
                     WHERE id = $id";
             
-            $result = $DB->query($sql);
+            $result = $DB->doQuery($sql);
             
             if ($result) {
                 Session::addMessageAfterRedirect("Cláusula atualizada com sucesso!", true, INFO);
@@ -260,7 +260,7 @@ try {
                  WHERE is_deleted = 0 AND entities_id = " . intval($_SESSION['glpiactive_entity']) . "
                  ORDER BY indice ASC, date_creation ASC";
     
-    $result_list = $DB->query($sql_list);
+    $result_list = $DB->doQuery($sql_list);
     
     if ($result_list && $DB->numrows($result_list) > 0) {
         

@@ -26,9 +26,7 @@ function plugin_termos_install() {
         KEY `idx_termos_versao` (`versao_serie`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-    if (!$DB->queryOrDie($query_termos, "Erro ao criar tabela $table_termos")) {
-        return false;
-    }
+    $DB->doQuery($query_termos);
 
     // Criação da tabela plugin_termo_clausulas
     $table_clausulas = 'glpi_plugin_termo_clausulas';
@@ -46,9 +44,7 @@ function plugin_termos_install() {
         KEY `idx_clausulas_indice` (`indice`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-    if (!$DB->queryOrDie($query_clausulas, "Erro ao criar tabela $table_clausulas")) {
-        return false;
-    }
+    $DB->doQuery($query_clausulas);
 
     // Criação da tabela plugin_termo_observacoes (NOVA TABELA)
     $table_observacoes = 'glpi_plugin_termo_observacoes';
@@ -66,9 +62,7 @@ function plugin_termos_install() {
         KEY `idx_observacoes_indice` (`indice`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
-    if (!$DB->queryOrDie($query_observacoes, "Erro ao criar tabela $table_observacoes")) {
-        return false;
-    }
+    $DB->doQuery($query_observacoes);
 
     // Log de sucesso
     error_log("Plugin Termos: Tabelas criadas com sucesso - $table_termos, $table_clausulas e $table_observacoes");
@@ -80,19 +74,13 @@ function plugin_termos_uninstall() {
     global $DB;
     
     // Remove a tabela termos_cabecalho
-    if (!$DB->queryOrDie("DROP TABLE IF EXISTS `glpi_termos_cabecalho`", "Erro ao remover tabela glpi_termos_cabecalho")) {
-        return false;
-    }
-    
+    $DB->doQuery("DROP TABLE IF EXISTS `glpi_termos_cabecalho`");
+
     // Remove a tabela plugin_termo_clausulas
-    if (!$DB->queryOrDie("DROP TABLE IF EXISTS `glpi_plugin_termo_clausulas`", "Erro ao remover tabela glpi_plugin_termo_clausulas")) {
-        return false;
-    }
-    
+    $DB->doQuery("DROP TABLE IF EXISTS `glpi_plugin_termo_clausulas`");
+
     // Remove a tabela plugin_termo_observacoes (NOVA TABELA)
-    if (!$DB->queryOrDie("DROP TABLE IF EXISTS `glpi_plugin_termo_observacoes`", "Erro ao remover tabela glpi_plugin_termo_observacoes")) {
-        return false;
-    }
+    $DB->doQuery("DROP TABLE IF EXISTS `glpi_plugin_termo_observacoes`");
     
     error_log("Plugin Termos: Tabelas removidas com sucesso - glpi_termos_cabecalho, glpi_plugin_termo_clausulas e glpi_plugin_termo_observacoes");
     
@@ -109,7 +97,7 @@ function plugin_termos_check_tables() {
     $results = [];
     
     foreach ($tables as $table) {
-        $result = $DB->query("SHOW TABLES LIKE '$table'");
+        $result = $DB->doQuery("SHOW TABLES LIKE '$table'");
         $exists = $DB->numrows($result) > 0;
         
         $results[] = [

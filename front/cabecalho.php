@@ -31,7 +31,7 @@ if (isset($_GET['delete_id']) && isset($_GET['confirm_delete'])) {
         try {
             // Soft delete - marcar como deletado
             $sql = "UPDATE glpi_termos_cabecalho SET is_deleted = 1, date_mod = NOW() WHERE id = $delete_id";
-            $result = $DB->query($sql);
+            $result = $DB->doQuery($sql);
             
             if ($result) {
                 Session::addMessageAfterRedirect("Cabeçalho excluído com sucesso!", true, INFO);
@@ -107,7 +107,7 @@ if (isset($_POST['add_cabecalho'])) {
                  '$setor_esc', '$revisao_esc', $paginas, '$data_versao_esc', 
                  $entities_id, NOW(), NOW(), 0)";
         
-        $result = $DB->query($sql);
+        $result = $DB->doQuery($sql);
         
         if ($result) {
             $cabecalho_id = $DB->insertId();
@@ -167,7 +167,7 @@ if (isset($_POST['update_cabecalho'])) {
                     date_mod = NOW()
                     WHERE id = $id";
             
-            $result = $DB->query($sql);
+            $result = $DB->doQuery($sql);
             
             if ($result) {
                 Session::addMessageAfterRedirect("Cabeçalho atualizado com sucesso!", true, INFO);
@@ -202,7 +202,7 @@ $sql_check = "SELECT * FROM glpi_termos_cabecalho
               WHERE is_deleted = 0 AND entities_id = " . intval($_SESSION['glpiactive_entity']) . "
               ORDER BY date_creation DESC";
 
-$result_check = $DB->query($sql_check);
+$result_check = $DB->doQuery($sql_check);
 $cabecalhos = [];
 $has_cabecalho = false;
 
