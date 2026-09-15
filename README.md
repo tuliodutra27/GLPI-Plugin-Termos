@@ -4,7 +4,12 @@ Plugin para geração de **termos de responsabilidade** em PDF para ativos cadas
 
 Ativos suportados: **Computadores, Monitores, Telefones, Linhas Telefônicas, Rádios, Impressoras e Periféricos**.
 
-> Este repositório também inclui o plugin **Radios** na pasta [`radios/`](radios/).
+> O suporte a **Rádios** no termo gerado depende do plugin
+> [GLPI-Plugin-Radios](https://github.com/tuliodutra27/GLPI-Plugin-Radios)
+> (tabela `glpi_plugin_radios_radios`) estar instalado e ativo. Esse plugin
+> vivia dentro deste repositório, na pasta `radios/`, e passou a ter
+> repositório próprio. Sem ele, os demais ativos continuam funcionando
+> normalmente — apenas rádios não aparecerão no termo.
 
 ## Requisitos
 
@@ -15,17 +20,17 @@ Ativos suportados: **Computadores, Monitores, Telefones, Linhas Telefônicas, R�
 
 ## Instalação
 
-### 1. Copiar os plugins
+### 1. Copiar o plugin
 
-Clone o repositório ou baixe o ZIP e copie as pastas para o diretório de plugins do GLPI:
+Clone o repositório (ou baixe o ZIP) para o diretório de plugins do GLPI:
 
 ```bash
-# Plugin Termos — copie a raiz deste repositório
-cp -r plugin-termos/  /var/www/glpi/plugins/termos/
-
-# Plugin Radios — copie a subpasta radios/
-cp -r plugin-termos/radios/  /var/www/glpi/plugins/radios/
+git clone https://github.com/tuliodutra27/plugin-termos.git /var/www/glpi/plugins/termos
 ```
+
+> Para incluir rádios no termo, instale também o
+> [GLPI-Plugin-Radios](https://github.com/tuliodutra27/GLPI-Plugin-Radios)
+> em `/var/www/glpi/plugins/radios`.
 
 ### 2. Instalar a fonte Arial no TCPDF
 
@@ -46,7 +51,7 @@ Destino:
 
 ### 3. Ativar no GLPI
 
-Acesse **Configuração → Plugins**, localize **termos** (e **Radios** se desejar) e clique em **Instalar**, depois em **Ativar**.
+Acesse **Configuração → Plugins**, localize **termos** e clique em **Instalar**, depois em **Ativar**.
 
 ## Tabelas criadas
 
