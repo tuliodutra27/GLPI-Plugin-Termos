@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <name>Radios</name>
-    <key>radios</key>
+    <name>Termos</name>
+    <key>termos</key>
     <state>stable</state>
-    <logo>pics/radio.png</logo>
+    <logo>front/logo.jpg</logo>
     <description>
         <short>
-            <en>Simple Hello World Plugin</en>
-            <pt_BR>Plugin simples Olá Mundo</pt_BR>
+            <en>Responsibility term (PDF) generator for GLPI assets</en>
+            <pt_BR>Gerador de termos de responsabilidade (PDF) para ativos do GLPI</pt_BR>
         </short>
         <long>
-            <en>A simple plugin that adds a "Radio" menu item showing Hello World</en>
-            <pt_BR>Um plugin simples que adiciona um item de menu "radio" mostrando Olá Mundo</pt_BR>
+            <en>Generates responsibility term PDFs for computers, monitors, phones, phone lines, radios, printers and peripherals assigned to a user.</en>
+            <pt_BR>Gera termos de responsabilidade em PDF para computadores, monitores, telefones, linhas telefônicas, rádios, impressoras e periféricos vinculados a um usuário.</pt_BR>
         </long>
     </description>
-    <homepage>https://github.com/seuusuario/glpi-radio</homepage>
-    <download>https://github.com/seuusuario/glpi-radio/releases</download>
-    <issues>https://github.com/seuusuario/glpi-radio/issues</issues>
-    <readme>https://github.com/seuusuario/glpi-radio/blob/main/README.md</readme>
+    <homepage>https://github.com/tuliodutra27/plugin-termos</homepage>
+    <download>https://github.com/tuliodutra27/plugin-termos/releases</download>
+    <issues>https://github.com/tuliodutra27/plugin-termos/issues</issues>
+    <readme>https://github.com/tuliodutra27/plugin-termos/blob/main/README.md</readme>
     <authors>
         <author>Diego, Luciano, Rafael e Tulio</author>
     </authors>
@@ -25,6 +25,10 @@
         <version>
             <num>1.0.0</num>
             <compatibility>10.0.0</compatibility>
+        </version>
+        <version>
+            <num>1.0.1</num>
+            <compatibility>~=11.0</compatibility>
         </version>
     </versions>
     <langs>
@@ -34,12 +38,12 @@
     <license>GPL v2+</license>
     <tags>
         <pt_BR>
-            <tag>exemplo</tag>
-            <tag>hello world</tag>
+            <tag>termo de responsabilidade</tag>
+            <tag>ativos</tag>
         </pt_BR>
         <en>
-            <tag>example</tag>
-            <tag>hello world</tag>
+            <tag>responsibility term</tag>
+            <tag>assets</tag>
         </en>
     </tags>
 </root>
