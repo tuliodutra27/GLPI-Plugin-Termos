@@ -1,6 +1,6 @@
 <?php
 
-define('PLUGIN_TERMOS_VERSION', '1.0.2');
+define('PLUGIN_TERMOS_VERSION', '1.0.3');
 
 function plugin_version_termos() {
     return [

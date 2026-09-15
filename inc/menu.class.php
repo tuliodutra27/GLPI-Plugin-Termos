@@ -18,11 +18,11 @@ class PluginTermosMenu extends CommonGLPI {
         return $menu;
     }
     
-    static function canView() {
+    static function canView(): bool {
         return true;
     }
-    
-    static function canCreate() {
+
+    static function canCreate(): bool {
         return true;
     }
 }
